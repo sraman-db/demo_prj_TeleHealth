@@ -1,0 +1,225 @@
+@font-face {
+  font-family: medicine;
+  src: url(../font/GamiliaDemoRegular-d9DL7.ttf);
+}
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: #fff;
+  font-family: 'medicine', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* NavBar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 2.6rem;
+  background: #1A2A4F;
+  font-family: 'medicine', Arial, sans-serif;
+  box-shadow: 0 6px 24px #0002;
+}
+nav h1 {
+  color: #fff;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  margin: 0;
+}
+nav button {
+  padding: 0.7rem 1.6rem;
+  border: 0.16rem solid #111;
+  border-radius: 10px;
+  background: #fff;
+  color: #1A2A4F;
+  font-size: 1.09rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+nav button:hover {
+  background: #1A2A4F;
+  color: #ff5858;
+  border: 0.16rem solid #ff5858;
+}
+
+/* Main/chat card */
+main {
+  min-height: calc(100vh - 6.2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 0.5rem;
+  background: #fff;
+}
+.chat-card {
+  width: 520px;
+  max-width: 99vw;
+  min-height: 500px;
+  background: #FFE3C6;
+  border-radius: 22px;
+  box-shadow: 0 6px 32px #1A2A4F22, 0 2px 13px #2223;
+  border: 2px solid #f9d0aa;
+  padding: 2.8rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Chat Results */
+.results-area {
+  min-height: 180px;
+  border-radius: 14px;
+  background: #fff7ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px solid #f6bc88;
+  box-shadow: 0 2px 8px #f3a95319;
+}
+.results-text {
+  color: #1A2A4F;
+  font-size: 1.16rem;
+  opacity: 0.87;
+  font-family: 'medicine', Arial, sans-serif;
+  text-align: center;
+  margin: 0 1rem;
+}
+
+/* Input Area */
+.input-area {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* Make text box flexible */
+.input-area .text-box {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  width: auto;
+}
+
+/* File Upload Styling */
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 110px;
+  max-width: 135px;
+  min-width: 90px;
+}
+.file-upload input[type="file"] {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  height: 36px;
+}
+.file-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1A2A4F;
+  color: #fff;
+  padding: 0.7rem 1.18rem;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.22s;
+}
+.file-btn:hover {
+  background: #111b34;
+}
+
+/* Text Box Styling */
+.text-box {
+  background: #fff;
+  color: #2e2323;
+  border: 1px solid #f6bc88;
+  border-radius: 10px;
+  padding: 0.82rem 1.07rem;
+  font-size: 1.09rem;
+  outline: none;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px #2222;
+  transition: border-color 0.16s, box-shadow 0.12s;
+  /* Width and flexible growth handled via .input-area .text-box */
+}
+.text-box::placeholder {
+  color: #b39b84;
+}
+
+/* Send Button Styling */
+.send-btn {
+  background: #1A2A4F;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.09rem;
+  font-weight: 700;
+  padding: 0.8rem 2.1rem;
+  cursor: pointer;
+  margin-left: 0.2rem;
+  box-shadow: 0 1px 7px #1A2A4F18;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background 0.2s, box-shadow 0.17s;
+}
+.send-btn:hover {
+  background: #111b34;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  nav {
+    padding: 1rem 0.7rem;
+  }
+  nav h1 {
+    font-size: 1.17rem;
+  }
+  .chat-card {
+    padding: 1.1rem 0.15rem 0.8rem 0.15rem;
+    border-radius: 12px;
+    width: 100vw;
+    min-height: 370px;
+    box-shadow: 0 4px 23px #1A2A4F33;
+  }
+  .results-area {
+    min-height: 110px;
+    font-size: 0.98rem;
+    padding: 14px 6px;
+  }
+  .results-text {
+    font-size: 0.93rem;
+  }
+  .file-upload, .text-box, .send-btn {
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    font-size: 0.98rem;
+  }
+  .input-area {
+    gap: 0.4rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .input-area .text-box {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}

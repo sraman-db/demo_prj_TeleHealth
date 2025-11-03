@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tele-Medicine Chat</title>
+  <link rel="stylesheet" href="../css/Diagnosis.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <h1>TeleMedicine</h1>
+    <button>Logout</button>
+  </nav>
+  <main>
+    <div class="chat-card">
+      <div class="results-area">
+        <span class="results-text">Chat results will be shown here</span>
+      </div>
+      <form class="input-area" autocomplete="off">
+        <label class="file-upload">
+          <input type="file" id="fileInput" />
+          <span class="file-btn"><i class="ri-upload-line"></i> Upload Doc</span>
+        </label>
+        <input type="text" placeholder="Write your message..." class="text-box" />
+        <button type="submit" class="send-btn">
+          <i class="ri-send-plane-2-line"></i> Send
+        </button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
