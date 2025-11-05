@@ -3,10 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TeleHealth Connect 24/7</title>
     <link rel="stylesheet" href="{% static 'tele_medicine/css/main.css' %}" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    {% comment %} <link rel="stylesheet" href="{% static 'tele_medicine/css/chatbot.css' %}" /> {% endcomment %}
 </head>
 <body>
     <main>
@@ -18,22 +19,45 @@
             </form>
         </nav>
         <div id="section">
-           <div id="box1" class="box">
-            <img src="{% static 'tele_medicine/images/image6.jpg' %}" alt="" />
-            <h2>diagnosis-chat</h2>
-            <a href="{% url 'diagnosis' %}"><button>Open It</button></a>
+            <div id="box1" class="box">
+                <img src="{% static 'tele_medicine/Images/image6.jpg' %}" alt="" />
+                <h2>diagnosis-chat</h2>
+                <a href="{% url 'diagnosis' %}"><button>Open It</button></a>
+            </div>
+            <div id="box2" class="box">
+                <img src="{% static 'tele_medicine/Images/image4.jpg' %}" alt="" />
+                <h2>doctor-details</h2>
+                <a href="{% url 'doctors' %}"><button>Open It</button></a>
+            </div>
+            <div id="box3" class="box">
+                <img src="{% static 'tele_medicine/Images/Location.jpg' %}" alt="" />
+                <h2>Nearest Medi-Help Centre</h2>
+                <a href="{% url 'navigation' %}"><button>Open It</button></a>
+            </div>
         </div>
-        <div id="box2" class="box">
-            <img src="{% static 'tele_medicine/images/image4.jpg' %}" alt="" />
-            <h2>doctor-details</h2>
-            <a href="#"><button>Open It</button></a>
-        </div>
-        <div id="box3" class="box">
-            <img src="{% static 'tele_medicine/images/Location.jpg' %}" alt="" />
-            <h2>Nearest Medi-Help Centre</h2>
-             <a href="{% url 'navigation' %}"><button>Open It</button></a>
-        </div>
-     </div>
     </main>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <div id="chatbot-widget" class="chatbot-collapsed">
+            <div id="chatbot-header">
+                <h3>Medical Assistant</h3>
+                <button id="close-chat">&times;</button>
+            </div>
+            <div id="chatbot-messages">
+                <div class="bot-message">
+                    <p>Hello! 👋 Welcome to TeleMedicine. I'm your virtual assistant.</p>
+                </div>
+            </div>
+            <div id="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Type your message..." />
+                <button id="send-message"><i class="ri-send-plane-fill"></i></button>
+            </div>
+        </div>
+        <button id="chatbot-toggle">🤖</button>
+    </div>
+
+    <script src="{% static 'tele_medicine/js/chatbot.js' %}"></script>
+
 </body>
 </html>

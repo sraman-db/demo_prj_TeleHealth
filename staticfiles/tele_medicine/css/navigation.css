@@ -1,6 +1,6 @@
 @font-face {
   font-family: medicine;
-  src: url(../font/GamiliaDemoRegular-d9DL7.ttf);
+  src: url(../fonts/GamiliaDemoRegular-d9DL7.ttf);
 }
 body {
   min-height: 100vh;
@@ -20,12 +20,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.4rem 2.6rem;
-  background: #1A2A4F;
+  background: white;
   font-family: 'medicine', Arial, sans-serif;
   box-shadow: 0 6px 24px #0002;
 }
 nav h1 {
-  color: #fff;
+  color: #d10f56;
   font-size: 2.2rem;
   letter-spacing: 2px;
   margin: 0;
@@ -34,7 +34,7 @@ nav button {
   padding: 0.7rem 1.6rem;
   border: 0.16rem solid #111;
   border-radius: 10px;
-  background: #fff;
+  background: #B77466;;
   color: #1A2A4F;
   font-size: 1.09rem;
   font-weight: 700;
@@ -54,12 +54,14 @@ main {
   justify-content: center;
   align-items: center;
   padding: 2rem 0.5rem;
-  background: #fff;
+  background-image: url(../Images/image8.jpg);
+  background-position: center;
+  background-size: cover;
 }
 .map-container {
   width: 900px;
   max-width: 99vw;
-  background: #FFE3C6;
+  background: rgba(222, 222, 209, 0.5);
   border-radius: 26px;
   box-shadow: 0 6px 32px #1A2A4F22, 0 2px 13px #2223;
   border: 2px solid #f9d0aa;
@@ -182,6 +184,6 @@ main {
   }
   nav h1 {
     font-size: 0.85rem;
-    letter-spacing: 1px;
-  }
+    letter-spacing: 1px;
+  }
 }

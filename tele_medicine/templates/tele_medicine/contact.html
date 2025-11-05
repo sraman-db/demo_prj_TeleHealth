@@ -147,10 +147,12 @@
                             <div class="ContactFormWidget">
                                 <form method="post" action="">
                                     {% csrf_token %}
-                                    <div class="alert alert-success" style="display:none;" id="email_sent">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong>Success!</strong> Your email has been sent successfully.
+
+                                    {% if success %}
+                                    <div class="alert alert-success" style="margin-top: 15px;">
+                                        <strong>Success!</strong> Your message has been sent successfully.
                                     </div>
+                                    {% endif %}
 
                                     <div class="input">
                                         <label>Your name:</label>

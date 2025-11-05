@@ -34,4 +34,5 @@ urlpatterns = [
     path('diagnosis/', views.diagnosis, name='diagnosis'),  # Diagnosis.html
     path('navigation/', views.navigation, name='navigation'),  # navigation.html
     path('mainpage/', views.main_page, name='mainpage'),  # mainPage.html
+    path('doctors/', views.doctors, name='doctors'), # doctors.html
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

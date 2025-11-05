@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db import IntegrityError
 from django.contrib.auth.hashers import make_password, check_password
-from .models import CustomUser, MedicalCenter
+from .models import CustomUser, MedicalCenter, ContactMessage
 import json
+from django.db import connection
+from datetime import datetime
 
 
 def logout_view(request):
@@ -57,8 +59,28 @@ def main_page(request):
     return render(request, 'tele_medicine/mainPage.html')
 
 def contact(request):
-    return render(request, 'tele_medicine/contact.html')
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
 
+        try:
+            with connection.cursor() as cursor:
+                query = """
+                    INSERT INTO contact_message (name, email, message, timestamp)
+                    VALUES (%s, %s, %s, %s)
+                """
+                values = (name, email, message, datetime.now())
+                cursor.execute(query, values)
+                connection.commit()
+
+            return render(request, 'tele_medicine/contact.html', {'success': True})
+
+        except Exception as e:
+            print("Database Error:", e)
+            return render(request, 'tele_medicine/contact.html', {'success': False, 'error': True})
+
+    return render(request, 'tele_medicine/contact.html', {'success': False, 'error': False})
 def signup(request):
     if request.method == 'POST':
         # Collect data safely
@@ -105,10 +127,16 @@ def login(request):
             if user and user.password and check_password(password, user.password):
                 # Set up session
                 request.session['user_id'] = user.id
-                messages.success(request, f'Welcome back, {user.first_name}!')
+                # messages.success(request, f'Welcome back, {user.first_name}!')
                 return redirect('mainpage')
             else:
                 messages.error(request, 'Invalid credentials')
         except CustomUser.DoesNotExist:
             messages.error(request, 'Invalid credentials')
     return render(request, 'tele_medicine/login.html')
+
+def doctors(request):
+    """
+    Display the doctors listing page
+    """
+    return render(request, 'tele_medicine/doctors.html')

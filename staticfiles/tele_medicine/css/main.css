@@ -1,6 +1,6 @@
 @font-face {
     font-family: medicine;
-    src: url(../font/GamiliaDemoRegular-d9DL7.ttf);
+    src: url(../fonts/GamiliaDemoRegular-d9DL7.ttf);
 }
 * {
     margin: 0;
@@ -25,22 +25,22 @@ nav {
     padding: 1rem 2rem;
     align-items: center;
     justify-content: space-between;
-    height: 7rem;
-    background: #1A2A4F;
+    height: 5rem;
+    background-color: white;
     font-family: medicine, sans-serif;
     box-shadow: 0 4px 20px rgba(0,0,0,0.07);
 }
 nav h1 {
-    color: white;
-    font-size: 2.7rem;
+    color: #d10f56;
+    font-size: 2.4rem;
     letter-spacing: 2px;
 }
 nav button {
     padding: 0.6rem 1.3rem;
-    border: 0.2rem solid #fff;
+    border: 0.2rem solid black;
     border-radius: 10px;
     font-size: 1.15rem;
-    background: #fff;
+    background: #B77466;
     color: #222;
     font-weight: 600;
     cursor: pointer;
@@ -62,6 +62,9 @@ nav button:hover {
     padding: 2rem 1rem 1.5rem 1rem;
     flex-wrap: wrap;
     min-height: calc(100vh - 7rem - 3.5rem);
+    background-image: url("../Images/médico\ en\ bata\ de\ laboratorio\ médico\ con\ un\ estetoscopio_\ médico\ en\ el\ fondo\ del\ hospital\ con\ espacio\ de\ copia.\ estructura\ de\ alambre\ de\ baja\ poli_");
+    background-position: center;
+    background-size: cover;
 }
 
 
@@ -70,7 +73,7 @@ nav button:hover {
     max-width: 410px;
     min-width: 275px;
     min-height: 390px;
-    background: #FFE3C6;
+    background: rgba(222, 222, 209, 0.5);
     border-radius: 25px;
     margin: 1rem 0;
     display: flex;
@@ -81,6 +84,7 @@ nav button:hover {
     transition: box-shadow 0.3s, transform 0.3s;
     position: relative;
     overflow: hidden;
+    
 }
 .box:hover {
     box-shadow: 0 8px 32px rgba(38,50,56,.21);
@@ -125,7 +129,7 @@ nav button:hover {
 }
 .box button:hover {
     background: #1A2A4F;
-    color: #ff5858;
+    color: orange;
     transform: scale(1.08);
 }
 
@@ -144,7 +148,7 @@ nav button:hover {
 }
 @media (max-width: 600px) {
     nav h1 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     nav {
         padding: 0.8rem 1rem;
@@ -176,5 +180,236 @@ nav button:hover {
     .box button {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Chatbot Container - Fixed positioning */
+#chatbot-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: none; /* Allow chatbot to be interactive */
+}
+
+/* Chatbot Toggle Button */
+#chatbot-toggle {
+    position: relative;
+    right: -80%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+    pointer-events: auto; /* Button should be clickable */
+    margin: 0 20px 20px 0; /* Add margin for spacing from edges */
+}
+
+/* Hover style for toggle*/
+#chatbot-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Chatbot Widget */
+#chatbot-widget {
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    pointer-events: auto; /* Widget should be interactive */
+    position: relative;
+    margin: 0 20px 20px 0; /* Add margin for spacing from edges */
+}
+
+/* Hidden by default */
+#chatbot-widget.chatbot-collapsed {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none; /* Don't block clicks when hidden */
+}
+
+/* Visible style */
+#chatbot-widget.chatbot-expanded {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Header */
+#chatbot-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+#close-chat:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Messages */
+#chatbot-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f5f5f5;
+}
+
+.bot-message,
+.user-message {
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Bot message bubble */
+.bot-message p {
+    background: white;
+    color: #333;
+    padding: 12px 15px;
+    border-radius: 15px 15px 15px 5px;
+    margin: 0;
+    display: inline-block;
+    max-width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    white-space: pre-line;
+    line-height: 1.5;
+}
+
+/* User message bubble aligned right */
+.user-message {
+    text-align: right;
+}
+
+.user-message p {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 15px 15px 5px 15px;
+    margin: 0;
+    display: inline-block;
+    max-width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+}
+
+/* Input area */
+#chatbot-input-area {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 10px;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#chatbot-input:focus {
+    border-color: #667eea;
+}
+
+#send-message {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+#send-message:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#send-message:active {
+    transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #chatbot-widget {
+        width: 90vw;
+        max-width: 350px;
+        height: 70vh;
+        max-height: 500px;
+        margin: 0 15px 15px 0;
+    }
+    #chatbot-container {
+        bottom: 0;
+        right: 0;
+    }
+    #chatbot-toggle {
+        margin: 0 15px 15px 0;
     }
 }
