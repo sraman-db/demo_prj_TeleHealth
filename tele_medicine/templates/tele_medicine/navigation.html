@@ -23,6 +23,24 @@
       z-index: 1000;
       display: none;
     }
+
+    #searchButton{
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid black;
+  background-color: #b39b84;
+  font-weight: 400;
+}
+#resetButton{
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid black;
+  background-color: #b39b84;
+  font-weight: 400;
+}
+
   </style>
 </head>
 <body>
@@ -37,7 +55,7 @@
     <div class="map-container">
       <div class="map-controls">
         <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search by name or type (hospital, clinic, pharmacy)" class="map-search" />
+          <input type="text" id="searchInput" placeholder="Search medi-help centers" class="map-search" />
           <button id="searchButton" class="search-btn">Search</button>
           <button id="resetButton" class="search-btn" style="margin-left: 10px;">Reset</button>
         </div>
@@ -76,6 +94,38 @@
     });
     
     map.addLayer(markers);
+
+        // === Add user's live location ===
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLat = position.coords.latitude;
+          const userLng = position.coords.longitude;
+
+          // Create a distinct RED marker for user location
+          const redIcon = L.icon({
+            iconUrl: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png', // red marker
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30],
+          });
+
+          const userMarker = L.marker([userLat, userLng], { icon: redIcon }).addTo(map);
+          userMarker.bindPopup("<b>Your Current Location</b>").openPopup();
+
+          // Optional: Zoom to user's location
+          map.setView([userLat, userLng], 13);
+
+          console.log("User location added:", userLat, userLng);
+        },
+        (error) => {
+          console.warn("Geolocation failed:", error.message);
+        }
+      );
+    } else {
+      console.warn("Geolocation not supported by this browser.");
+    }
+
 
     // Get DOM elements
     const searchInput = document.getElementById('searchInput');

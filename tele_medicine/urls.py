@@ -35,4 +35,5 @@ urlpatterns = [
     path('navigation/', views.navigation, name='navigation'),  # navigation.html
     path('mainpage/', views.main_page, name='mainpage'),  # mainPage.html
     path('doctors/', views.doctors, name='doctors'), # doctors.html
+    path('chat/diagnosis/', views.chat_diagnosis, name='predict_disease'), # chat diagnosis API
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

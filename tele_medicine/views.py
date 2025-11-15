@@ -6,6 +6,9 @@ from .models import CustomUser, MedicalCenter, ContactMessage
 import json
 from django.db import connection
 from datetime import datetime
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .predictor import predict_from_text
 
 
 def logout_view(request):
@@ -140,3 +143,33 @@ def doctors(request):
     Display the doctors listing page
     """
     return render(request, 'tele_medicine/doctors.html')
+
+@csrf_exempt
+def chat_diagnosis(request):
+    if request.method == "POST":
+        try:
+            body = json.loads(request.body.decode("utf-8"))
+            text = body.get("text", "").strip()
+        except Exception:
+            return JsonResponse({"error": "Invalid request format."})
+
+        if not text:
+            return JsonResponse({"error": "No input provided."})
+
+        result = predict_from_text(text)
+        if "error" in result:
+            return JsonResponse({"error": result["error"]})
+
+        # ✅ Include department and print full response
+        response = {
+            "prediction": result.get("prediction"),
+            "probabilities": result.get("probabilities"),
+            "extracted": result.get("extracted"),
+            "department": result.get("department", "General Physician")  # 👈 added
+        }
+
+        print("🔍 API returning:", response)  # 👈 debug print here
+
+        return JsonResponse(response)
+
+    return JsonResponse({"error": "Invalid request method. Use POST."})

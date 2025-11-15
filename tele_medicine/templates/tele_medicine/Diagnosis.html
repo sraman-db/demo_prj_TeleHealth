@@ -16,22 +16,27 @@
       <button type="submit">Logout</button>
     </form>
   </nav>
-  <main>
+    <main>
     <div class="chat-card">
       <div class="results-area">
-        <span class="results-text">Chat results will be shown here</span>
+        <!-- chat messages will be appended here -->
+        <div id="chat-messages" class="chat-messages">
+          <div class="results-text">Chat results will be shown here</div>
+        </div>
       </div>
-      <form class="input-area" autocomplete="off">
+  <form id="diagnosis-form" class="input-area" autocomplete="off" data-predict-url="{% url 'predict_disease' %}">
         <label class="file-upload">
           <input type="file" id="fileInput" />
-          <span class="file-btn"><i class="ri-upload-line"></i> Upload Doc</span>
+          <!-- <span class="file-btn"><i class="ri-upload-line"></i> Upload Doc</span> -->
         </label>
-        <input type="text" placeholder="Write your message..." class="text-box" />
+        <input id="diagnosis-input" type="text" placeholder="Write your message..." class="text-box" />
         <button type="submit" class="send-btn">
           <i class="ri-send-plane-2-line"></i> Send
         </button>
       </form>
     </div>
   </main>
+
+  <script src="{% static 'tele_medicine/js/diagnosis_chat.js' %}"></script>
 </body>
 </html>
